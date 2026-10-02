@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevVault // Modern Developer Resource Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="ambient-glow ambient-glow-1"></div>
+    <div class="ambient-glow ambient-glow-2"></div>
+
+    <div class="app-layout">
+        <header class="navbar">
+            <div class="nav-brand">
+                <div class="nav-logo">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </div>
+                <div>
+                    <span class="brand-name">DEV<span class="brand-slash">//</span>VAULT</span>
+                    <div class="brand-status"><span class="status-pulse"></span>live directory</div>
+                </div>
+            </div>
+            <button id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle theme">🌙 Dark Mode</button>
+        </header>
+
+        <section class="hero-deck">
+            <div class="terminal-chip">
+                <span class="chip-icon">⚡</span>
+                <span class="chip-cmd">codex.catalog</span> / community curated
+            </div>
+            <h1 class="hero-heading">Build Faster. <span class="gradient-text">Ship Smarter.</span></h1>
+            <p class="hero-description">An open collection of high-leverage frameworks, developer APIs, documentation, and workflow tools. Filter by stack, upvote the best, or contribute your favorite finds.</p>
+            <div class="feature-strip">
+                <div class="strip-item"><span class="strip-bullet"></span>Curated & Tested</div>
+                <div class="strip-item"><span class="strip-bullet"></span>Community Upvoted</div>
+                <div class="strip-item"><span class="strip-bullet"></span>Instant Category Filters</div>
+            </div>
+        </section>
+
+        <section class="filter-deck">
+            <div class="search-command-bar">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search documentation, frameworks, or libraries..." onkeyup="filterResources()" autocomplete="off">
+                <span class="search-shortcut-hint">FIND</span>
+            </div>
+            <div class="category-buttons">
+                <button class="cat-btn active" onclick="filterCategory('All', this)"><span>✦</span> All Stack</button>
+                <button class="cat-btn" onclick="filterCategory('Web Dev', this)"><span>🌐</span> Web Dev</button>
+                <button class="cat-btn" onclick="filterCategory('App Dev', this)"><span>📱</span> App Dev</button>
+                <button class="cat-btn" onclick="filterCategory('AI/ML', this)"><span>🤖</span> AI / ML</button>
+                <button class="cat-btn" onclick="filterCategory('Tools', this)"><span>🛠️</span> Dev Tools</button>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <div class="form-banner">
+                <div class="form-icon-pill">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </div>
+                <div>
+                    <h3>Contribute a Resource</h3>
+                    <p class="form-hint">Submit a tool or library to make it discoverable for developers worldwide</p>
+                </div>
+            </div>
+            <form id="resourceForm" onsubmit="addResource(event)">
+                <div class="input-cell">
+                    <label for="title">Resource Title</label>
+                    <input type="text" id="title" placeholder="e.g. Supabase, Vite, Hugging Face" required>
+                </div>
+                <div class="input-cell">
+                    <label for="category">Stack Category</label>
+                    <select id="category" required>
+                        <option value="">Select a category</option>
+                        <option value="Web Dev">Web Dev</option>
+                        <option value="App Dev">App Dev</option>
+                        <option value="AI/ML">AI/ML</option>
+                        <option value="Tools">Tools</option>
+                    </select>
+                </div>
+                <div class="input-cell input-cell-span">
+                    <label for="description">Short Description</label>
+                    <input type="text" id="description" placeholder="What does this tool do and why is it awesome?" required>
+                </div>
+                <div class="input-cell input-cell-span">
+                    <label for="link">Website or Repository URL</label>
+                    <input type="url" id="link" placeholder="https://..." required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">
+                        Deploy Resource
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <main id="resourceGrid" class="resource-grid"></main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
